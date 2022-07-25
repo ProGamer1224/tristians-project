@@ -1,7 +1,10 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.sayText("We're no strangers to love You know the rules and so do I (do I) A full commitment's what I'm thinking of You wouldn't get this from any other guy I just wanna tell you how I'm feeling Gotta make you understand Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you We've known each other for so long Your heart's been aching, but you're too shy to say it (say it) Inside, we both know what's been going on (going on) We know the game and we're gonna play it And if you ask me how I'm feeling Don't tell me you're too blind to see Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you We've known each other for so long Your heart's been aching, but you're too shy to say it (to say it) Inside, we both know what's been going on (going on) We know the game and we're gonna play it I just wanna tell you how I'm feeling Gotta make you understand Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you", 100000, true)
+    mySprite2.sayText("monch", 1000, true)
 })
-let mySprite: Sprite = null
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
+})
+let mySprite2: Sprite = null
 scene.setBackgroundImage(img`
     eeeee2222222222222222222222222222222222ee2222ee2222ee2222222eeeee2222222222222222222222222222222222ee22222eeee222ee2eeeee2222222222222222222222222222222222ee222
     222eeeee22222222222222222222222222222eee2222eeee2222ee222222222eeeee22222222222222222222222222222eee2222eeeee222ee22222eeeee22222222222222222222222222222eee2222
@@ -124,7 +127,7 @@ scene.setBackgroundImage(img`
     222222e2ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2e222222
     222222eeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeee222222
     `)
-mySprite = sprites.create(img`
+let mySprite = sprites.create(img`
     . . . . . . . . . . b 5 b . . . 
     . . . . . . . . . b 5 b . . . . 
     . . . . . . b b b b b b . . . . 
@@ -141,7 +144,29 @@ mySprite = sprites.create(img`
     . . c b d d d d d 5 5 5 b b . . 
     . . . c c c c c c c c b b . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
-mySprite.setPosition(80, 97)
-controller.moveSprite(mySprite)
+    `, SpriteKind.Food)
 mySprite.setStayInScreen(true)
+mySprite.setBounceOnWall(true)
+mySprite.vx += 75
+mySprite.vy += 75
+mySprite2 = sprites.create(img`
+    ...........fffffff...ccfff..........
+    ..........fbbbbbbbffcbbbbf..........
+    ..........fbb111bbbbbffbf...........
+    ..........fb11111ffbbbbff...........
+    ..........f1cccc1ffbbbbbcff.........
+    ..........ffc1c1c1bbcbcbcccf........
+    ...........fcc3331bbbcbcbcccf..ccccc
+    ............c333c1bbbcbcbccccfcddbbc
+    ............c333c1bbbbbbbcccccddbcc.
+    ............c333c11bbbbbccccccbbcc..
+    ...........cc331c11bbbbccccccfbccf..
+    ...........cc13c11cbbbcccccbbcfccf..
+    ...........c111111cbbbfdddddc.fbbcf.
+    ............cc1111fbdbbfdddc...fbbf.
+    ..............cccfffbdbbfcc.....fbbf
+    ....................fffff........fff
+    `, SpriteKind.Player)
+controller.moveSprite(mySprite2)
+mySprite2.setStayInScreen(true)
+info.setScore(0)
